@@ -30,21 +30,6 @@
   --r-md: 10px;
 }
 
-html[data-theme='dark'] {
-  color-scheme: dark;
-  --white: #111;
-  --ink: #f4f4f4;
-  --g900: #e8e8e8;
-  --g700: #c8c8c8;
-  --g600: #b5b5b5;
-  --g500: #999;
-  --g400: #777;
-  --g300: #555;
-  --g200: #353535;
-  --g100: #242424;
-  --g50: #191919;
-}
-html[data-theme='light'] { color-scheme: light; }
 
 @media (min-width: 1800px) { :root { --maxw: 1560px; } }
 @media (max-width: 899px) { :root { --nav-h: 68px; } }
