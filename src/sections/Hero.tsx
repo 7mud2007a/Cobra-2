@@ -56,7 +56,7 @@ export function Hero({ instant }: { instant: boolean }) {
         <h1 className="hero__title" style={{ '--i': 0 } as React.CSSProperties}>{t.hero.headline}</h1>
         <p className="hero__sub" style={{ '--i': 1 } as React.CSSProperties}>{t.hero.sub}</p>
         <div style={{ '--i': 2 } as React.CSSProperties}>
-          <button type="button" className="btn btn--light" onClick={() => scrollToSection('vehicles')}>{t.hero.cta}</button>
+          <button type="button" className="btn btn--dark" onClick={() => scrollToSection('vehicles')}>{t.hero.cta}</button>
         </div>
       </div>
     </section>
