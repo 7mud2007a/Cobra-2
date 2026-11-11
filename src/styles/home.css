@@ -2,13 +2,11 @@
 .hero { position: relative; display: flex; align-items: flex-end; height: 100svh; min-height: 560px; max-height: 1280px; overflow: hidden; isolation: isolate; background: #000; color: var(--white); }
 .hero__media { position: absolute; inset: -6% 0; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
 .hero__drift { position: absolute; inset: 0; animation: drift 32s ease-in-out 4s infinite alternate; }
-.hero__img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(2.5); transform-origin: 90% 50%; transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1); }
-.is-revealed .hero__img { transform: scale(2.5); }
-/* The uploaded artwork has the emblem on the right; anchor the zoom there. */
-[dir='rtl'] .hero__img { transform: scaleX(-2.5) scaleY(2.5); transform-origin: 10% 50%; }
-[dir='rtl'] .is-revealed .hero__img { transform: scaleX(-2.5) scaleY(2.5); }
+.hero__img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(1); transform-origin: center; transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1); }
+.is-revealed .hero__img { transform: scale(1); }
+/* Keep the uploaded artwork fully visible and preserve the emblem's orientation in RTL. */
 @media (max-width: 720px) {
-  .hero__img, [dir='rtl'] .hero__img { object-fit: contain; object-position: center; }
+  .hero__img { object-fit: contain; object-position: center; transform: scale(1); }
 }
 .hero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 34%, transparent 62%); }
 /* cinematic reveal: starts almost black, lifts slowly */
