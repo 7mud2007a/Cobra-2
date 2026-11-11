@@ -19,7 +19,6 @@ export function Hero({ instant }: { instant: boolean }) {
     let live = true
     const el = img.current
     const imgReady = !el || el.complete ? Promise.resolve() : new Promise<void>((r) => { el.addEventListener('load', () => r(), { once: true }); el.addEventListener('error', () => r(), { once: true }) })
-    // wait for both supplied fonts explicitly (document.fonts.ready can resolve before loading starts)
     const fonts = document.fonts?.load ? Promise.all([document.fonts.load('1em Tajawal'), document.fonts.load('1em Alamani', 'ا')]).catch(() => undefined) : Promise.resolve()
     Promise.race([Promise.all([imgReady, fonts, wait(500)]), wait(3500)]).then(() => {
       if (!live) return
@@ -29,7 +28,6 @@ export function Hero({ instant }: { instant: boolean }) {
     return () => { live = false }
   }, [revealed])
 
-  // light parallax: one transform on one element, updated at most once per frame
   useEffect(() => {
     if (prefersReducedMotion()) return
     let raf = 0
@@ -48,10 +46,7 @@ export function Hero({ instant }: { instant: boolean }) {
     <section id="home" className={cx('hero', revealed && 'is-revealed', instant && 'is-instant')}>
       <div className="hero__media" ref={media}>
         <div className="hero__drift">
-          <picture>
-            <source media="(max-width: 720px)" srcSet={asset('images/hero-portrait.jpg')} />
-            <img ref={img} className="hero__img" src={asset('images/hero.jpg')} alt={t.hero.alt} width={2400} height={1350} fetchPriority="high" decoding="async" />
-          </picture>
+          <img ref={img} className="hero__img" src={asset('images/cobra-logo.png')} alt={t.hero.alt} width={886} height={480} fetchPriority="high" decoding="async" />
         </div>
       </div>
       <div className="hero__scrim" aria-hidden="true" />
