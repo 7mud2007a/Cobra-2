@@ -1,19 +1,21 @@
 /* ───────── Hero ───────── */
-.hero { position: relative; display: flex; align-items: flex-end; height: 100svh; min-height: 560px; max-height: 1280px; overflow: hidden; isolation: isolate; background: #000; color: var(--white); }
+.hero { position: relative; display: flex; align-items: flex-end; height: 100svh; min-height: 560px; max-height: 1280px; overflow: hidden; isolation: isolate; background: var(--white); color: var(--ink); transition: background-color 0.35s var(--ease), color 0.35s var(--ease); }
 .hero__media { position: absolute; inset: -6% 0; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
 .hero__drift { position: absolute; inset: 0; animation: drift 32s ease-in-out 4s infinite alternate; }
-.hero__img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(1); transform-origin: center; transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1); }
+.hero__img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(1); transform-origin: center; transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1), filter 0.35s var(--ease); }
+/* The supplied transparent emblem is black: invert it only on the dark canvas so it stays visible. */
+html[data-theme='dark'] .hero__img { filter: grayscale(1) invert(1); }
 .is-revealed .hero__img { transform: scale(1); }
 /* Keep the uploaded artwork fully visible and preserve the emblem's orientation in RTL. */
 @media (max-width: 720px) {
   .hero__img { object-fit: contain; object-position: center; transform: scale(1); }
 }
-.hero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 34%, transparent 62%); }
+.hero__scrim { position: absolute; inset: 0; background: transparent; pointer-events: none; }
 /* cinematic reveal: starts almost black, lifts slowly */
-.hero__shade { position: absolute; inset: 0; background: #000; opacity: 0.95; transition: opacity 3.4s cubic-bezier(0.45, 0, 0.2, 1); }
-.is-revealed .hero__shade { opacity: 0.1; }
-.hero__loader { position: absolute; top: 50%; left: 50%; width: min(150px, 34vw); height: 1px; transform: translateX(-50%); background: rgba(255, 255, 255, 0.18); overflow: hidden; transition: opacity 0.6s; }
-.hero__loader::after { content: ''; position: absolute; inset: 0; background: #fff; transform: translateX(-100%); animation: load 1.4s var(--ease) infinite; }
+.hero__shade { position: absolute; inset: 0; background: var(--white); opacity: 0.95; transition: opacity 3.4s cubic-bezier(0.45, 0, 0.2, 1), background-color 0.35s var(--ease); }
+.is-revealed .hero__shade { opacity: 0; }
+.hero__loader { position: absolute; top: 50%; left: 50%; width: min(150px, 34vw); height: 1px; transform: translateX(-50%); background: var(--g300); overflow: hidden; transition: opacity 0.6s; }
+.hero__loader::after { content: ''; position: absolute; inset: 0; background: var(--ink); transform: translateX(-100%); animation: load 1.4s var(--ease) infinite; }
 .is-revealed .hero__loader { opacity: 0; }
 
 .hero__content { position: relative; z-index: 2; padding-bottom: clamp(44px, 9vh, 104px); }
@@ -21,8 +23,8 @@
 .is-revealed .hero__content > * { opacity: 1; transform: none; }
 .hero__title { max-width: min(100%, 36rem); font-family: var(--font-display); font-size: clamp(2.15rem, 0.9rem + 3.5vw, 4.3rem); line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
 html[lang='ar'] .hero__title { line-height: 1.35; }
-.hero__sub { max-width: 30rem; margin-top: 1.3rem; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.84); font-size: 1.0625rem; text-wrap: pretty; }
-.hero :focus-visible { outline-color: var(--white); }
+.hero__sub { max-width: 30rem; margin-top: 1.3rem; margin-bottom: 2rem; color: var(--g600); font-size: 1.0625rem; text-wrap: pretty; }
+.hero :focus-visible { outline-color: var(--ink); }
 @media (max-width: 720px) { .hero__sub { margin-top: 1rem; margin-bottom: 1.5rem; font-size: 1rem; } .hero__content .btn { width: 100%; } }
 @keyframes drift { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(-1.2%, -0.6%, 0) scale(1.05); } }
 @keyframes load { to { transform: translateX(100%); } }
