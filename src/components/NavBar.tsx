@@ -13,9 +13,6 @@ export function NavBar({ isHome }: { isHome: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState<SectionId>('home')
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    try { return localStorage.getItem('cobra-theme') === 'dark' ? 'dark' : 'light' } catch { return 'light' }
-  })
   const firstLink = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
@@ -49,11 +46,6 @@ export function NavBar({ isHome }: { isHome: boolean }) {
     return () => { window.removeEventListener('keydown', onKey); document.documentElement.classList.remove('no-scroll') }
   }, [open])
 
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    try { localStorage.setItem('cobra-theme', theme) } catch { /* storage may be unavailable */ }
-  }, [theme])
-
   const items: [SectionId, string][] = [['home', t.nav.home], ['vehicles', t.nav.vehicles], ['about', t.nav.about], ['contact', t.nav.contact]]
   const go = (id: SectionId) => (e: React.MouseEvent) => {
     e.preventDefault()
@@ -80,9 +72,6 @@ export function NavBar({ isHome }: { isHome: boolean }) {
         </nav>
 
         <div className="nav__tools">
-          <button type="button" className="nav__theme" onClick={() => setTheme((current) => current === 'dark' ? 'light' : 'dark')} aria-label={theme === 'dark' ? (lang === 'ar' ? 'تفعيل الوضع الفاتح' : 'Switch to light mode') : (lang === 'ar' ? 'تفعيل الوضع الداكن' : 'Switch to dark mode')} title={theme === 'dark' ? (lang === 'ar' ? 'الوضع الفاتح' : 'Light mode') : (lang === 'ar' ? 'الوضع الداكن' : 'Dark mode')}>
-            <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
-          </button>
           <button type="button" className="nav__lang" lang={lang === 'ar' ? 'en' : 'ar'} onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} aria-label={t.a11y.switchLang}>
             {t.nav.otherLang}
           </button>
