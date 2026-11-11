@@ -22,9 +22,12 @@
 .nav__link:hover::after, .nav__link.is-active::after { transform: scaleX(1); }
 
 .nav__tools { display: flex; align-items: center; gap: 0.6rem; align-self: center; }
-.nav__lang, .nav__burger { border: 1px solid rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.nav__lang, .nav__theme, .nav__burger { border: 1px solid rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.nav__theme { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; font-size: 1.2rem; }
 .nav__lang { min-height: 42px; padding: 0 1.1rem; border-radius: 999px; font-size: 0.9rem; }
-.nav.is-solid .nav__lang, .nav.is-solid .nav__burger { border-color: var(--g300); background: transparent; }
+.nav.is-solid .nav__lang, .nav.is-solid .nav__theme, .nav.is-solid .nav__burger { border-color: var(--g300); background: transparent; }
+.nav__theme:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
+.nav.is-solid .nav__theme:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 .nav__lang:hover { background: var(--white); color: var(--ink); border-color: var(--white); }
 .nav.is-solid .nav__lang:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 .nav__burger { display: none; position: relative; width: 44px; height: 44px; border-radius: 50%; }
