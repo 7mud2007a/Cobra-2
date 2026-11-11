@@ -8,7 +8,7 @@
    image is mirrored. Remove this rule once real photography is in place if mirroring is not wanted. */
 [dir='rtl'] .hero__img { transform: scale(-1.16, 1.16); object-position: 0% 58%; }
 [dir='rtl'] .is-revealed .hero__img { transform: scale(-1.02, 1.02); }
-@media (max-width: 720px) { .hero__img, [dir='rtl'] .hero__img { object-position: 50% 50%; } }
+@media (max-width: 720px) { .hero__img, [dir='rtl'] .hero__img { object-fit: contain; object-position: center; transform: scaleX(-1); } .is-revealed .hero__img, [dir='rtl'] .is-revealed .hero__img { transform: scaleX(-1); } } }
 .hero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 34%, transparent 62%); }
 /* cinematic reveal: starts almost black, lifts slowly */
 .hero__shade { position: absolute; inset: 0; background: #000; opacity: 0.95; transition: opacity 3.4s cubic-bezier(0.45, 0, 0.2, 1); }
