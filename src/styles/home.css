@@ -2,13 +2,14 @@
 .hero { position: relative; display: flex; align-items: flex-end; height: 100svh; min-height: 560px; max-height: 1280px; overflow: hidden; isolation: isolate; background: #000; color: var(--white); }
 .hero__media { position: absolute; inset: -6% 0; transform: translate3d(0, var(--py, 0px), 0); will-change: transform; }
 .hero__drift { position: absolute; inset: 0; animation: drift 32s ease-in-out 4s infinite alternate; }
-.hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 100% 58%; transform: scale(1.16); transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1); }
-.is-revealed .hero__img { transform: scale(1.02); }
-/* Temporary artwork has the car on the right, facing left. In RTL the text sits on the right, so the
-   image is mirrored. Remove this rule once real photography is in place if mirroring is not wanted. */
-[dir='rtl'] .hero__img { transform: scale(-1.16, 1.16); object-position: 0% 58%; }
-[dir='rtl'] .is-revealed .hero__img { transform: scale(-1.02, 1.02); }
-@media (max-width: 720px) { .hero__img, [dir='rtl'] .hero__img { object-fit: contain; object-position: center; transform: scaleX(-1); } .is-revealed .hero__img, [dir='rtl'] .is-revealed .hero__img { transform: scaleX(-1); } } }
+.hero__img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: scale(2.5); transform-origin: 90% 50%; transition: transform 4.8s cubic-bezier(0.16, 0.8, 0.28, 1); }
+.is-revealed .hero__img { transform: scale(2.5); }
+/* The uploaded artwork has the emblem on the right; anchor the zoom there. */
+[dir='rtl'] .hero__img { transform: scaleX(-2.5) scaleY(2.5); transform-origin: 10% 50%; }
+[dir='rtl'] .is-revealed .hero__img { transform: scaleX(-2.5) scaleY(2.5); }
+@media (max-width: 720px) {
+  .hero__img, [dir='rtl'] .hero__img { object-fit: contain; object-position: center; }
+}
 .hero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 34%, transparent 62%); }
 /* cinematic reveal: starts almost black, lifts slowly */
 .hero__shade { position: absolute; inset: 0; background: #000; opacity: 0.95; transition: opacity 3.4s cubic-bezier(0.45, 0, 0.2, 1); }
