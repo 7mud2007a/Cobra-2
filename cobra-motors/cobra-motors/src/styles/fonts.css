@@ -1,0 +1,24 @@
+/*
+  Supplied brand fonts — used exactly as provided, no substitutes.
+  • Tajawal-Regular.ttf — Arabic + Latin. Body, UI, numerals and all Latin text.
+  • Alamani-Regular.ttf — Arabic display face. It contains Arabic letters only (no Latin letters),
+    so its unicode-range is limited to Arabic; Latin text in headings falls through to Tajawal.
+  Both files ship a single Regular (400) weight, so the design builds hierarchy with size, spacing
+  and colour rather than faux-bold (font-synthesis is disabled in base.css).
+  `font-display: block` + preload (index.html) avoids any fallback-font flash or layout shift.
+*/
+@font-face {
+  font-family: 'Tajawal';
+  src: url('../assets/fonts/Tajawal-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Alamani';
+  src: url('../assets/fonts/Alamani-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
