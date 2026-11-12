@@ -27,19 +27,6 @@ export function Hero({ instant }: { instant: boolean }) {
     return () => { live = false }
   }, [revealed])
 
-  useEffect(() => {
-    if (prefersReducedMotion()) return
-    let raf = 0
-    const on = () => {
-      if (raf) return
-      raf = requestAnimationFrame(() => {
-        raf = 0
-        media.current?.style.setProperty('--py', `${Math.min(window.scrollY, window.innerHeight) * 0.16}px`)
-      })
-    }
-    window.addEventListener('scroll', on, { passive: true })
-    return () => { window.removeEventListener('scroll', on); if (raf) cancelAnimationFrame(raf) }
-  }, [])
 
   return (
     <section id="home" className={cx('hero', revealed && 'is-revealed', instant && 'is-instant')}>
