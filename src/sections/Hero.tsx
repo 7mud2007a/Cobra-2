@@ -11,7 +11,6 @@ const wait = (ms: number) => new Promise<void>((r) => window.setTimeout(r, ms))
 export function Hero({ instant }: { instant: boolean }) {
   const { t } = useLang()
   const [revealed, setRevealed] = useState(() => instant || seen() || prefersReducedMotion())
-  const media = useRef<HTMLDivElement>(null)
   const img = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export function Hero({ instant }: { instant: boolean }) {
 
   return (
     <section id="home" className={cx('hero', revealed && 'is-revealed', instant && 'is-instant')}>
-      <div className="hero__media" ref={media}>
+      <div className="hero__media">
         <div className="hero__drift">
           <img ref={img} className="hero__img" src={asset('images/cobra-logo.png')} alt={t.hero.alt} width={886} height={480} fetchPriority="high" decoding="async" />
         </div>
